@@ -107,7 +107,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           iconUrl: getPoolConfig("community_sri")?.iconUrl,
           badge: "Testing",
           badgeColor: "blue",
-          warning: "Not for production use – rewards are not paid out."
+          warning: "Not for production use – any blocks found will be donated to the SRI project"
         },
         { 
           id: 'pool_demand', 
@@ -119,7 +119,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           iconUrl: getPoolConfig("demand")?.iconUrl,
           badge: "Soon",
           badgeColor: "orange",
-          warning: "This option is coming soon.",
+          warning: "This option is coming soon",
           disabled: true
         }
       ]
@@ -140,7 +140,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           iconUrl: getPoolConfig("community_sri")?.iconUrl,
           badge: "Testing",
           badgeColor: "blue",
-          warning: "Not for production use – rewards are not paid out."
+          warning: "Not for production use – any blocks found will be donated to the SRI project"
         }
       ]
     },
@@ -160,7 +160,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           iconUrl: getPoolConfig("community_sri")?.iconUrl,
           badge: "Testing",
           badgeColor: "blue",
-          warning: "Not for production use – no share accounting / no payouts."
+          warning: "Not for production use – any blocks found will be donated to the SRI project."
         },
         { 
           id: 'pool_braiins', 
@@ -181,7 +181,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           iconUrl: getPoolConfig("demand")?.iconUrl,
           badge: "Soon",
           badgeColor: "orange",
-          warning: "Coming soon.",
+          warning: "Coming soon",
           disabled: true
         }
       ]
@@ -199,9 +199,10 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
           value: "community_sri", 
           nextStepId: "translator_proxy_configuration", 
           icon: Globe,
+          iconUrl: getPoolConfig("community_sri")?.iconUrl,
           badge: "Testing",
           badgeColor: "blue",
-          warning: "Not for production use – no share accounting / no payouts."
+          warning: "Not for production use – any blocks found will be donated to the SRI project"
         }
       ]
     },
