@@ -46,8 +46,8 @@ export const POOLS: Record<string, PoolConfig> = {
         jdsPort: 3334,
       },
       testnet4: {
-        port: 3335,
-        jdsPort: 3336,
+        port: 43333,
+        jdsPort: 43334,
       }
     }
   },
