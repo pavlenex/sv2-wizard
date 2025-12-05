@@ -1,7 +1,8 @@
 // Pool Connection Binaries deployment component
 // Deploys: JDC (optional) + Translator Proxy to connect to existing pools
 
-import { Download, Play, FileDown, Network } from "lucide-react";
+import { useState } from "react";
+import { Download, Play, FileDown, Network, ChevronDown, ChevronUp, Cpu } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { CodeBlock, InfoCard } from '../ui';
 import { 
@@ -18,6 +19,7 @@ export const PoolConnectionBinariesDeployment = ({ data }: { data?: any }) => {
   const socketPath = data?.bitcoinSocketPath || "/path/to/node.sock";
   const platform = getPlatform();
   const network = (data?.selectedNetwork || "mainnet") as 'mainnet' | 'testnet4';
+  const [showCpuMiner, setShowCpuMiner] = useState(false);
   
   // Prepare config data
   const configData: ConfigTemplateData = {
@@ -170,14 +172,63 @@ unzip -o ../config.zip`;
               Connect Miners
             </h3>
             <p className="text-sm text-green-200/90 mb-2">
-              Point your miners at the translator on port <code className="text-xs font-mono bg-black/20 px-1.5 py-0.5 rounded">34255</code>:
+              Translator Proxy will be running on port <code className="text-xs font-mono bg-black/20 px-1.5 py-0.5 rounded">34255</code>. Edit your mining device(s) configuration, adding the line:
             </p>
-            <code className="text-sm font-mono text-green-100 block bg-black/20 rounded p-2">
+            <code className="text-sm font-mono text-green-100 block bg-black/20 rounded p-2 mb-4">
               stratum+tcp://&lt;host-ip&gt;:34255
             </code>
+            <button
+              onClick={() => setShowCpuMiner(!showCpuMiner)}
+              className="w-full flex items-center justify-center gap-2 text-sm font-medium text-green-100 bg-green-500/20 hover:bg-green-500/30 border border-green-400/30 rounded-lg px-4 py-3 transition-all"
+            >
+              <Cpu className="w-4 h-4" />
+              {showCpuMiner ? (
+                <>
+                  <ChevronUp className="w-4 h-4" />
+                  Hide CPU Miner Instructions
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4" />
+                  I don't have an ASIC, but I want to try with a CPU-miner
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
+
+      {showCpuMiner && (
+        <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 p-4">
+          <div className="flex items-start gap-3">
+            <Cpu className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+            <div className="flex-1 space-y-3">
+              <h3 className="text-sm font-semibold text-blue-100">
+                CPU Miner
+              </h3>
+              <p className="text-sm text-blue-200/90">
+                If you don't have a physical miner, you can do tests with CPUMiner.
+              </p>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs text-blue-200/80 mb-1 font-semibold">Setup the correct CPUMiner for your OS:</p>
+                  <ul className="text-xs text-blue-200/80 space-y-1 ml-4 list-disc">
+                    <li>You can download the binary directly from <a href="https://sourceforge.net/projects/cpuminer/files/" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">here</a>;</li>
+                    <li>Or compile it from <a href="https://github.com/pooler/cpuminer" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 underline">https://github.com/pooler/cpuminer</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-xs text-blue-200/80 mb-1 font-semibold">On the CPUMiner directory:</p>
+                  <CodeBlock
+                    label="Run cpuminer"
+                    code={`./minerd -a sha256d -o stratum+tcp://localhost:34255 -q -D -P`}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
