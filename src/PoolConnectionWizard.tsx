@@ -66,8 +66,7 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
       description: "Which network will your Bitcoin Node operate on?",
       options: [
         { id: 'opt_main', label: "Mainnet", subLabel: "Production Network", value: "mainnet", nextStepId: "bitcoin_guide_mainnet", icon: Globe },
-        { id: 'opt_test', label: "Testnet4", subLabel: "Testing Network", value: "testnet4", nextStepId: "bitcoin_guide_testnet", icon: Activity },
-        { id: 'opt_sig', label: "Signet", subLabel: "Developer Network", value: "signet", nextStepId: "bitcoin_guide_signet", icon: Terminal, warning: "Coming soon", disabled: true }
+        { id: 'opt_test', label: "Testnet4", subLabel: "Testing Network", value: "testnet4", nextStepId: "bitcoin_guide_testnet", icon: Activity }
       ]
     },
     bitcoin_guide_mainnet: { 
@@ -83,13 +82,6 @@ const POOL_CONNECTION_WIZARD_CONFIG: WizardConfig = {
       title: "Bitcoin Core Setup (Testnet4)", 
       nextStepId: 'select_pool_construct_testnet4',
       component: <BitcoinSetupContent network="testnet4" showBitcoinConf={false} />
-    },
-    bitcoin_guide_signet: { 
-      id: 'bitcoin_guide_signet', 
-      type: 'instruction', 
-      title: "Bitcoin Core Setup (Signet)", 
-      nextStepId: 'select_pool_construct_mainnet',
-      component: <BitcoinSetupContent network="signet" showBitcoinConf={false} />
     },
     select_pool_construct_mainnet: {
       id: 'select_pool_construct_mainnet',

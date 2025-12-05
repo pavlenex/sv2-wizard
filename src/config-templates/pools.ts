@@ -65,7 +65,7 @@ export const POOLS: Record<string, PoolConfig> = {
 
 export function getPoolConfig(
   poolValue: string | undefined,
-  network?: 'mainnet' | 'testnet4' | 'signet'
+  network?: 'mainnet' | 'testnet4'
 ): PoolConfig | null {
   if (!poolValue) return null;
   

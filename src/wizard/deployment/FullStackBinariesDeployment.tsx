@@ -18,7 +18,7 @@ import { getPlatform, getDownloadUrl } from '../constants';
 export const FullStackBinariesDeployment = ({ data }: { data?: any }) => {
   const socketPath = data?.bitcoinSocketPath || "/path/to/node.sock";
   const platform = getPlatform();
-  const network = (data?.selectedNetwork || "mainnet") as 'mainnet' | 'testnet4' | 'signet';
+  const network = (data?.selectedNetwork || "mainnet") as 'mainnet' | 'testnet4';
   const constructTemplates = data?.constructTemplates !== false; // Default to true for full-stack
   
   // Prepare config data

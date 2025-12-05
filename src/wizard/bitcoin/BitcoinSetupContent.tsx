@@ -33,9 +33,7 @@ export const BitcoinSetupContent = ({
   const [nodeStarted, setNodeStarted] = useState(false);
   const startNodeCommand = network === "mainnet" 
     ? "./bitcoin-30.0/bin/bitcoin -m node -ipcbind=unix"
-    : network === "testnet4"
-    ? "./bitcoin-30.0/bin/bitcoin -m node -ipcbind=unix -testnet4"
-    : "./bitcoin-30.0/bin/bitcoin -m node -ipcbind=unix -signet";
+    : "./bitcoin-30.0/bin/bitcoin -m node -ipcbind=unix -testnet4";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,12 +49,6 @@ export const BitcoinSetupContent = ({
 
   return (
     <div className="space-y-6">
-      {network === "signet" && (
-        <div className="rounded-lg border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-yellow-100">
-          Signet support is being finalized. Expect limited functionality while integration work completes.
-        </div>
-      )}
-
       <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
         <h3 className="text-primary font-semibold flex items-center gap-2 mb-2">
           <HardDrive className="w-4 h-4" /> Bitcoin Core Setup Required

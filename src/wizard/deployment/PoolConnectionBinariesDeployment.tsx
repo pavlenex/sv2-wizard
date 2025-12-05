@@ -17,7 +17,7 @@ export const PoolConnectionBinariesDeployment = ({ data }: { data?: any }) => {
   const needsSocketPath = !!data?.bitcoinSocketPath;
   const socketPath = data?.bitcoinSocketPath || "/path/to/node.sock";
   const platform = getPlatform();
-  const network = (data?.selectedNetwork || "mainnet") as 'mainnet' | 'testnet4' | 'signet';
+  const network = (data?.selectedNetwork || "mainnet") as 'mainnet' | 'testnet4';
   
   // Prepare config data
   const configData: ConfigTemplateData = {
